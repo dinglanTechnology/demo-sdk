@@ -319,3 +319,71 @@ export const $UserOrderBy = {
     },
   },
 } as const
+
+export const $Role = {
+  type: 'object',
+  properties: {
+    id: {
+      type: 'number',
+    },
+    name: {
+      type: 'string',
+    },
+  },
+  required: ['id', 'name'],
+} as const
+
+export const $User = {
+  type: 'object',
+  properties: {
+    username: {
+      type: 'string',
+    },
+    email: {
+      type: 'string',
+    },
+    role: {
+      $ref: '#/components/schemas/Role',
+    },
+    roles: {
+      type: 'array',
+      items: {
+        $ref: '#/components/schemas/Role',
+      },
+    },
+    id: {
+      type: 'number',
+    },
+    createdAt: {
+      type: 'object',
+      default: '2024-08-27T03:01:20.490Z',
+    },
+    updatedAt: {
+      type: 'object',
+      default: '2024-08-27T03:01:20.490Z',
+    },
+    createdBy: {
+      type: 'number',
+    },
+    updatedBy: {
+      type: 'number',
+    },
+  },
+  required: ['username', 'email', 'id', 'createdAt', 'updatedAt'],
+} as const
+
+export const $Result = {
+  type: 'object',
+  properties: {
+    data: {
+      type: 'array',
+      items: {
+        $ref: '#/components/schemas/User',
+      },
+    },
+    total: {
+      type: 'number',
+    },
+  },
+  required: ['data', 'total'],
+} as const

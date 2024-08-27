@@ -127,7 +127,33 @@ export const updateAt = {
   DESC: 'desc',
 } as const
 
-export type UserControllerGetData = {
+export type Role = {
+  id: number
+  name: string
+}
+
+export type User = {
+  username: string
+  email: string
+  role?: Role
+  roles?: Array<Role>
+  id: number
+  createdAt: {
+    [key: string]: unknown
+  }
+  updatedAt: {
+    [key: string]: unknown
+  }
+  createdBy?: number
+  updatedBy?: number
+}
+
+export type Result = {
+  data: Array<User>
+  total: number
+}
+
+export type UserControllerListData = {
   query?: {
     /**
      * 实际类型为UserFilter，需要使用qs.stringify()
@@ -141,6 +167,34 @@ export type UserControllerGetData = {
   }
 }
 
-export type UserControllerGetResponse = unknown
+export type UserControllerListResponse = Result
 
-export type UserControllerGetError = unknown
+export type UserControllerListError = unknown
+
+export type UserControllerPostResponse = User
+
+export type UserControllerPostError = unknown
+
+export type UserControllerUpdateOneResponse = User
+
+export type UserControllerUpdateOneError = unknown
+
+export type UserControllerGetOneData = {
+  query: {
+    id: string
+  }
+}
+
+export type UserControllerGetOneResponse = User
+
+export type UserControllerGetOneError = unknown
+
+export type UserControllerDeleteData = {
+  query: {
+    id: string
+  }
+}
+
+export type UserControllerDeleteResponse = void
+
+export type UserControllerDeleteError = unknown

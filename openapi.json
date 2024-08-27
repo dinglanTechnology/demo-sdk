@@ -3,7 +3,8 @@
   "paths": {
     "/api/user": {
       "get": {
-        "operationId": "UserController_get",
+        "operationId": "UserController_list",
+        "summary": "列表",
         "parameters": [
           {
             "name": "filter",
@@ -34,6 +35,94 @@
         ],
         "responses": {
           "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "UserController_post",
+        "summary": "新增",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "UserController_updateOne",
+        "summary": "修改",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/{id}": {
+      "get": {
+        "operationId": "UserController_getOne",
+        "summary": "item",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "UserController_delete",
+        "summary": "删除",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
             "description": ""
           }
         }
@@ -366,6 +455,71 @@
             "enum": ["asc", "desc"]
           }
         }
+      },
+      "Role": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": ["id", "name"]
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "role": {
+            "$ref": "#/components/schemas/Role"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Role"
+            }
+          },
+          "id": {
+            "type": "number"
+          },
+          "createdAt": {
+            "type": "object",
+            "default": "2024-08-27T03:01:20.490Z"
+          },
+          "updatedAt": {
+            "type": "object",
+            "default": "2024-08-27T03:01:20.490Z"
+          },
+          "createdBy": {
+            "type": "number"
+          },
+          "updatedBy": {
+            "type": "number"
+          }
+        },
+        "required": ["username", "email", "id", "createdAt", "updatedAt"]
+      },
+      "Result": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            }
+          },
+          "total": {
+            "type": "number"
+          }
+        },
+        "required": ["data", "total"]
       }
     }
   }
