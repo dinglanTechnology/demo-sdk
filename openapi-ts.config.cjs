@@ -2,7 +2,7 @@
 
 module.exports = {
   client: '@hey-api/client-fetch',
-  input: 'http://localhost:3000/api-document-json',
+  input: 'http://localhost:3000/api/document-json',
   output: {
     format: 'prettier',
     path: './src/client',

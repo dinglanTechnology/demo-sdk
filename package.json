@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "openapi-ts": "openapi-ts"
+    "codegen": "openapi-ts"
   },
   "keywords": [],
   "author": "",
